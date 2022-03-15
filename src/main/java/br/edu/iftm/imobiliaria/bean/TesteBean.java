@@ -1,5 +1,6 @@
 package br.edu.iftm.imobiliaria.bean;
 
+import br.edu.iftm.imobiliaria.entity.Usuario;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -14,7 +15,10 @@ public class TesteBean implements Serializable{
     
     public void dizerOla(){
         FacesContext fc = FacesContext.getCurrentInstance();
-        fc.addMessage(null, new FacesMessage("Olá "+ nome));
+        Usuario usuario = new Usuario();
+        usuario.setNome(nome);
+        fc.addMessage(null, new FacesMessage("Olá "+ usuario));
+        
     }
 
     public String getNome() {
