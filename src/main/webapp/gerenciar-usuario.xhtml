@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="template.xhtml">
+
+        <h:form>
+            <h1>#{usuarioBean.estado} usuários</h1>
+            
+            <p:commandButton value="Novo" update="@form"
+                             actionListener="#{usuarioBean.novo()}"></p:commandButton>
+            <p:commandButton value="Salvar" action="#{usuarioBean.salvar()}"
+                              update="@form"></p:commandButton>
+            <p:panelGrid columns="2" rendered="#{usuarioBean.estado != 'PESQUISANDO'}">
+                <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
+                <p:inputText value="#{usuarioBean.usuario.nome}"
+                             id="txtNome"></p:inputText>
+                <p:outputLabel for="txtSobrenome" value="Sobrenome"></p:outputLabel>
+                <p:inputText value="#{usuarioBean.usuario.sobrenome}"
+                             id="txtSobrenome"></p:inputText>
+                <p:outputLabel for="txtEmail" value="E-mail"></p:outputLabel>
+                <p:inputText value="#{usuarioBean.usuario.email}"
+                             id="txtEmail"></p:inputText>
+                <p:outputLabel for="txtSenha" value="Senha"></p:outputLabel>
+                <p:password value="#{usuarioBean.usuario.password}"
+                            id="txtSenha" feedback="true"></p:password>
+            </p:panelGrid>
+            
+            <p:dataTable value="#{usuarioBean.usuarios}"  rendered="#{usuarioBean.estado == 'PESQUISANDO'}" var="user">
+                <p:column>
+                    <p:commandButton icon="fa fa-edit" update="@form"
+                                     action="#{usuarioBean.editar(user)}"></p:commandButton>
+                    <p:commandButton icon="fa fa-trash" update="@form"
+                                     action="#{usuarioBean.deletar(user.id)}"></p:commandButton>
+                </p:column>
+                <p:column headerText="ID">
+                    <h:outputText value="#{user.id}"></h:outputText>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Sobrenome">
+                    <h:outputText value="#{user.sobrenome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{user.email}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+</ui:composition>
+
