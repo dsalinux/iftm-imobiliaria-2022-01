@@ -1,13 +1,12 @@
 package br.edu.iftm.imobiliaria.bean;
 
 import br.edu.iftm.imobiliaria.entity.Usuario;
+import br.edu.iftm.imobiliaria.logic.CrudLogic;
+import br.edu.iftm.imobiliaria.logic.UsuarioLogic;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
@@ -15,39 +14,18 @@ import lombok.Setter;
  */
 @Named
 @SessionScoped
-public class UsuarioBean implements Serializable {
+public class UsuarioBean extends CrudBean<Usuario, UsuarioLogic> implements Serializable {
+
+    @Inject
+    private UsuarioLogic logic;
     
-    @Getter @Setter
-    private Usuario usuario = new Usuario();
-    @Getter @Setter
-    private List<Usuario> usuarios = new ArrayList();
-    private Integer id = 1;
-    @Getter
-    private String estado = "PESQUISANDO";
-    
-    public void novo(){
-        this.usuario = new Usuario();
-        estado = "CRIANDO";
+    public UsuarioBean() {
+        super(Usuario.class);
     }
-    
-    public void salvar(){
-        usuario.setId(id++);
-        this.usuarios.add(usuario);
-        usuario = new Usuario();
-        estado = "PESQUISANDO";
+
+    @Override
+    public UsuarioLogic getLogic() {
+        return this.logic;
     }
-    public void deletar(Integer id) {
-        Usuario u = new Usuario();
-        u.setId(id);
-        System.out.println("%%%%%%%%%%%%% "+id);
-        Integer index = this.usuarios.lastIndexOf(u);
-        System.out.println("%%%%%%%%%%%%% "+index);
-        this.usuarios.remove(u);
-        estado = "PESQUISANDO";
-    }
-    public void editar(Usuario u){
-        this.usuario = u;
-        estado = "EDITANDO";
-    }
-    
+   
 }

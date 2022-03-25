@@ -7,33 +7,37 @@
       template="template.xhtml">
 
         <h:form>
-            <h1>#{usuarioBean.estado} usuários</h1>
+            <h1>#{usuarioBean.estado.name()} usuários</h1>
             
             <p:commandButton value="Novo" update="@form"
                              actionListener="#{usuarioBean.novo()}"></p:commandButton>
             <p:commandButton value="Salvar" action="#{usuarioBean.salvar()}"
                               update="@form"></p:commandButton>
-            <p:panelGrid columns="2" rendered="#{usuarioBean.estado != 'PESQUISANDO'}">
+            
+            <p:commandButton value="#{usuarioBean.estado.name() == 'BUSCAR'?'Buscar':'Voltar'}" action="#{usuarioBean.buscar()}"
+                              update="@form"></p:commandButton>
+            
+            <p:panelGrid columns="2" rendered="#{usuarioBean.estado.name() != 'BUSCAR'}">
                 <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
-                <p:inputText value="#{usuarioBean.usuario.nome}"
+                <p:inputText value="#{usuarioBean.entidade.nome}"
                              id="txtNome"></p:inputText>
                 <p:outputLabel for="txtSobrenome" value="Sobrenome"></p:outputLabel>
-                <p:inputText value="#{usuarioBean.usuario.sobrenome}"
+                <p:inputText value="#{usuarioBean.entidade.sobrenome}"
                              id="txtSobrenome"></p:inputText>
                 <p:outputLabel for="txtEmail" value="E-mail"></p:outputLabel>
-                <p:inputText value="#{usuarioBean.usuario.email}"
+                <p:inputText value="#{usuarioBean.entidade.email}"
                              id="txtEmail"></p:inputText>
                 <p:outputLabel for="txtSenha" value="Senha"></p:outputLabel>
-                <p:password value="#{usuarioBean.usuario.password}"
+                <p:password value="#{usuarioBean.entidade.password}"
                             id="txtSenha" feedback="true"></p:password>
             </p:panelGrid>
             
-            <p:dataTable value="#{usuarioBean.usuarios}"  rendered="#{usuarioBean.estado == 'PESQUISANDO'}" var="user">
+            <p:dataTable value="#{usuarioBean.entidades}"  rendered="#{usuarioBean.estado.name() == 'BUSCAR'}" var="user">
                 <p:column>
                     <p:commandButton icon="fa fa-edit" update="@form"
                                      action="#{usuarioBean.editar(user)}"></p:commandButton>
                     <p:commandButton icon="fa fa-trash" update="@form"
-                                     action="#{usuarioBean.deletar(user.id)}"></p:commandButton>
+                                     action="#{usuarioBean.remover(user)}"></p:commandButton>
                 </p:column>
                 <p:column headerText="ID">
                     <h:outputText value="#{user.id}"></h:outputText>
