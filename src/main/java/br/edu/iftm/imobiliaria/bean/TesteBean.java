@@ -14,10 +14,10 @@ public class TesteBean implements Serializable{
     private String nome;
     
     public void dizerOla(){
-        FacesContext fc = FacesContext.getCurrentInstance();
-        Usuario usuario = new Usuario();
-        usuario.setNome(nome);
-        fc.addMessage(null, new FacesMessage("Olá "+ usuario));
+//        FacesContext fc = FacesContext.getCurrentInstance();
+//        Usuario usuario = new Usuario();
+//        usuario.setNome(nome);
+//        fc.addMessage(null, new FacesMessage("Olá "+ usuario));
         
     }
 

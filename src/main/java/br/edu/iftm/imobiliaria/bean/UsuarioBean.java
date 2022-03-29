@@ -14,7 +14,7 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class UsuarioBean extends CrudBean<Usuario, UsuarioLogic> implements Serializable {
+public class UsuarioBean extends CrudBean<Usuario, UsuarioLogic> {
 
     @Inject
     private UsuarioLogic logic;
