@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
@@ -24,7 +24,7 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
@@ -131,7 +131,8 @@ aside .menu a:hover {
 
 main {
     flex: 1;
-    padding-left: var(--largura-aside);
+    margin-left: var(--largura-aside);
+    padding: 20px;
 }
 
 footer {
@@ -142,4 +143,32 @@ footer {
     font-size: 20px;
     font-weight: bold;
     padding-left: var(--largura-aside);
+}
+.sobre {
+    font-family: sans-serif;
+}
+.sobre h2 {
+    font-size: 1.8em;
+    padding: 30px 0px;
+}
+.sobre p {
+    font-size: 1.4em;
+    line-height: 1.5em;
+    padding-bottom: 20px;
+}
+.sobre ul li a {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.4em;
+}
+.sobre ul li a:hover {
+    background: #2196F3;
+}
+
+.sobre .profile {
+    float: right;
+    height: 50vh;
+    padding: 40px;
 }
