@@ -8,7 +8,7 @@
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Template Admin</title>
+        <title>Sistema Imobiliária #{empty titulo?'':' - '.concat(titulo)}</title>
         <h:outputStylesheet library="imobiliaria" name="css/layoutadmin.css"></h:outputStylesheet>
         <h:outputStylesheet library="imobiliaria" name="css/all.css"></h:outputStylesheet>
         <h:outputStylesheet library="imobiliaria" name="css/all2.css"></h:outputStylesheet>
@@ -16,7 +16,7 @@
     <h:body>
         <header>
             <a class="toogleAside" href="#"><i class="fa-solid fa-bars"></i></a>
-            <h1>Título</h1>
+            <h1>#{empty titulo?'Sistema Imobiliária':titulo}</h1>
         </header>
         <aside>
             <div class="logo">

@@ -65,7 +65,7 @@ body, html {
 header {
     background-color: var(--cor-base);
     color: var(--cor-texto-base);
-    font-size: 2.2em;
+    font-size: 1.5em;
     font-weight: bold;
     padding-left: var(--largura-aside);
 }
