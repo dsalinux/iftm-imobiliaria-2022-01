@@ -14,7 +14,7 @@ public interface CrudLogic<E, ID> extends Serializable{
     
     public E salvar(E entidade) throws ErroNegocioException, ErroSistemaException;
     public void deletar(E entidade) throws ErroNegocioException, ErroSistemaException;
-    public E bucarPorID(ID id) throws ErroNegocioException, ErroSistemaException;
+    public E bucarPorID(E entidade) throws ErroNegocioException, ErroSistemaException;
     public List<E> buscar(E entidade) throws ErroNegocioException, ErroSistemaException; 
     
 }

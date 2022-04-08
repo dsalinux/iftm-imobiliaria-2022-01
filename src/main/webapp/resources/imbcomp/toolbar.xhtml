@@ -20,7 +20,8 @@
                 <p:commandButton value="Novo" update="@form"
                                  icon="fas fa-file" actionListener="#{cc.attrs.crudBean.novo()}"></p:commandButton>
                 <p:commandButton value="Salvar" action="#{cc.attrs.crudBean.salvar()}"
-                                 icon="fas fa-save" update="@form"></p:commandButton>
+                                 icon="fas fa-save" update="@form"
+                                 rendered="#{cc.attrs.crudBean.estado.name() != 'BUSCAR'}"></p:commandButton>
 
                 <p:commandButton value="#{cc.attrs.crudBean.estado.name() == 'BUSCAR'?'Buscar':'Voltar'}" action="#{cc.attrs.crudBean.buscar()}"
                                  update="@form" icon="fas #{cc.attrs.crudBean.estado.name() == 'BUSCAR'?'fa-search':'fa-backward'}"></p:commandButton>

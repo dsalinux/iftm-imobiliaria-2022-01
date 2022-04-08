@@ -28,8 +28,8 @@ public class UsuarioLogic implements CrudLogic<Usuario, Integer>{
     }
 
     @Override
-    public Usuario bucarPorID(Integer id)  throws ErroNegocioException, ErroSistemaException{
-        return null;
+    public Usuario bucarPorID(Usuario entidade)  throws ErroNegocioException, ErroSistemaException{
+        return repository.findById(entidade.getId());
     }
 
     @Override

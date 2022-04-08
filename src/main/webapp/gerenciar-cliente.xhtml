@@ -8,40 +8,46 @@
                 xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp">
     <ui:param name="titulo" value="Gerenciar Cliente"></ui:param>
     <h:form>
-        <im:toolbar crudBean="#{usuarioBean}"/>
-        <p:panelGrid columns="2" rendered="#{usuarioBean.estado.name() != 'BUSCAR'}">
+        <im:toolbar crudBean="#{clienteBean}"/>
+        <p:panelGrid columns="2" rendered="#{clienteBean.estado.name() != 'BUSCAR'}">
             <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
-            <p:inputText value="#{usuarioBean.entidade.nome}"
+            <p:inputText value="#{clienteBean.entidade.nome}"
                          id="txtNome"></p:inputText>
-            <p:outputLabel for="txtSobrenome" value="Sobrenome"></p:outputLabel>
-            <p:inputText value="#{usuarioBean.entidade.sobrenome}"
-                         id="txtSobrenome"></p:inputText>
-            <p:outputLabel for="txtEmail" value="E-mail"></p:outputLabel>
-            <p:inputText value="#{usuarioBean.entidade.email}"
+            <p:outputLabel for="txtCPF" value="CPF"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.cpf}"
+                         id="txtCPF"></p:inputText>
+            <p:outputLabel for="txtRG" value="RG"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.rg}"
+                         id="txtRG"></p:inputText>
+            <p:outputLabel for="txtDataNascimento" value="Data Nascimento"></p:outputLabel>
+            <p:calendar id="txtDataNascimento" value="#{clienteBean.entidade.dataNascimento}"></p:calendar>
+            <p:outputLabel for="txtEmail" value="Email"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.email}"
                          id="txtEmail"></p:inputText>
-            <p:outputLabel for="txtSenha" value="Senha"></p:outputLabel>
-            <p:password value="#{usuarioBean.entidade.password}"
-                        id="txtSenha" feedback="true"></p:password>
+            <p:outputLabel for="txtEndereco" value="Endereco"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco}"
+                         id="txtEndereco"></p:inputText>
+
         </p:panelGrid>
 
-        <p:dataTable value="#{usuarioBean.entidades}"  rendered="#{usuarioBean.estado.name() == 'BUSCAR'}" var="user">
+        <p:dataTable value="#{clienteBean.entidades}"  rendered="#{clienteBean.estado.name() == 'BUSCAR'}" var="entidade">
             <p:column>
                 <p:commandButton icon="fa fa-edit" update="@form"
-                                 action="#{usuarioBean.editar(user)}"></p:commandButton>
+                                 action="#{clienteBean.editar(entidade)}"></p:commandButton>
                 <p:commandButton icon="fa fa-trash" update="@form"
-                                 action="#{usuarioBean.remover(user)}"></p:commandButton>
+                                 action="#{clienteBean.remover(entidade)}"></p:commandButton>
             </p:column>
             <p:column headerText="ID">
-                <h:outputText value="#{user.id}"></h:outputText>
+                <h:outputText value="#{entidade.id}"></h:outputText>
             </p:column>
-            <p:column headerText="Nome">
-                <h:outputText value="#{user.nome}"></h:outputText>
+            <p:column headerText="Nome" filterBy="#{entidade.nome}">
+                <h:outputText value="#{entidade.nome}"></h:outputText>
             </p:column>
-            <p:column headerText="Sobrenome">
-                <h:outputText value="#{user.sobrenome}"></h:outputText>
+            <p:column headerText="CPF">
+                <h:outputText value="#{entidade.cpf}"></h:outputText>
             </p:column>
             <p:column headerText="Email">
-                <h:outputText value="#{user.email}"></h:outputText>
+                <h:outputText value="#{entidade.email}"></h:outputText>
             </p:column>
         </p:dataTable>
     </h:form>
