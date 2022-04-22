@@ -44,6 +44,19 @@
                 <p:autoUpdate></p:autoUpdate>
             </p:growl>
             <ui:insert></ui:insert>
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+            <style type="text/css">
+                .loading-icon {
+                    font-size: 3rem!important;
+                    color: var(--primary-color);
+                }
+            </style>
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <div class="p-text-center">
+                    <i class="pi pi-spin pi-spinner loading-icon" aria-hidden="true"></i>
+                </div>
+            </p:dialog>
+
         </main>
         <footer>
             <p>IFTM - Sistema imobiliária - Versão 0.1</p>
