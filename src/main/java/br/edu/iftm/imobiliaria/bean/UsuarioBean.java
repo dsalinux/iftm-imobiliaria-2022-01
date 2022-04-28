@@ -16,6 +16,16 @@ import javax.inject.Named;
 @SessionScoped
 public class UsuarioBean extends CrudBean<Usuario, UsuarioLogic> {
 
+    /*
+    TODO: Tarefas para usuário
+    - Problema para salvar senha
+    - Configurar a senha para HASH SHA-256 @see HashUtil (MD5Util)
+    - Configurar Gravatar
+    - Selecionar Permissões
+    - Relacionamento com JPA
+    - Seleção de dados com Primefaces.
+    */
+    
     @Inject
     private UsuarioLogic logic;
     

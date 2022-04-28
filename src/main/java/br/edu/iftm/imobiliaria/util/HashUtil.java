@@ -1,6 +1,6 @@
 package br.edu.iftm.imobiliaria.util;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author danilo
  */
-public class MD5Util {
+public class HashUtil {
 
     public static String hex(byte[] array) {
         StringBuffer sb = new StringBuffer();
@@ -23,9 +23,18 @@ public class MD5Util {
         try {
             MessageDigest md
                     = MessageDigest.getInstance("MD5");
-            return hex(md.digest(message.getBytes("CP1252")));
+            return hex(md.digest(message.getBytes(StandardCharsets.UTF_8)));
         } catch (NoSuchAlgorithmException e) {
-        } catch (UnsupportedEncodingException e) {
+        }
+        return null;
+    }
+    
+    public static String sha156Hex(String message) {
+        try {
+            MessageDigest md
+                    = MessageDigest.getInstance("SHA-256");
+            return hex(md.digest(message.getBytes(StandardCharsets.UTF_8)));
+        } catch (NoSuchAlgorithmException e) {
         }
         return null;
     }
