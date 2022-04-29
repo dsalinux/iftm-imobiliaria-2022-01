@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="template.xhtml"
+      xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <ui:param name="titulo" value="Gerenciar Usuário"></ui:param>
+        <h:form>
+            <im:toolbar crudBean="#{permissaoBean}"></im:toolbar>
+            
+            <p:panelGrid columns="2" rendered="#{permissaoBean.estado.name() != 'BUSCAR'}">
+                <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
+                <p:inputText value="#{permissaoBean.entidade.nome}"
+                             id="txtNome"></p:inputText>
+                <p:outputLabel for="txtDescricao" value="Sobrenome"></p:outputLabel>
+                <p:inputText value="#{permissaoBean.entidade.descricao}"
+                             id="txtDescricao"></p:inputText>
+            </p:panelGrid>
+            
+            <p:dataTable value="#{permissaoBean.entidades}"  rendered="#{permissaoBean.estado.name() == 'BUSCAR'}" var="user">
+                <p:column>
+                    <p:commandButton icon="fa fa-edit" update="@form"
+                                     action="#{permissaoBean.editar(user)}"></p:commandButton>
+                    <p:commandButton icon="fa fa-trash" update="@form"
+                                     action="#{permissaoBean.remover(user)}"></p:commandButton>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{user.descricao}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+</ui:composition>
+
