@@ -28,7 +28,8 @@
             <p:outputLabel value="Selecionar Permissões" for="selectPermissao"></p:outputLabel>
             <p:selectCheckboxMenu id="selectPermissao" value="#{usuarioBean.entidade.permissoes}" label="Cities" style="width: 15rem"
                                   filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" scrollHeight="250"
-                                  dynamic="true" multiple="true" >
+                                  dynamic="true" multiple="true">
+                <f:attribute name="collectionType" value="java.util.ArrayList" />
                 <f:selectItems value="#{usuarioBean.permissoes}" var="p" itemLabel="#{p.nome}" itemValue="#{p}"/>
             </p:selectCheckboxMenu>
         </p:panelGrid>

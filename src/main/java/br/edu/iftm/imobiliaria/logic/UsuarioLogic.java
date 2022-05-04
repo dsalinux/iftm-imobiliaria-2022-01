@@ -9,6 +9,7 @@ import br.edu.iftm.imobiliaria.util.exception.ErroSistemaException;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+import org.hibernate.Hibernate;
 
 public class UsuarioLogic implements CrudLogic<Usuario, Integer>{
 
@@ -47,7 +48,9 @@ public class UsuarioLogic implements CrudLogic<Usuario, Integer>{
 
     @Override
     public Usuario bucarPorID(Usuario entidade)  throws ErroNegocioException, ErroSistemaException{
-        return repository.findById(entidade.getId());
+        Usuario u = repository.findById(entidade.getId());
+        u.getPermissoes().size();
+        return u;
     }
 
     @Override

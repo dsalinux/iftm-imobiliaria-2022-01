@@ -84,11 +84,11 @@ CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`usuario` (
   `data_desativacao` DATETIME NULL DEFAULT NULL,
   `data_expiracao_senha` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = MyISAM
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = big5;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`permissao` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL  AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(150) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
