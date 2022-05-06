@@ -21,7 +21,7 @@ time, mark, audio, video {
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;
+    /*vertical-align: baseline;*/ /* Remoção para não atrapalhar o CSS do Primefaces. */
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -128,7 +128,23 @@ aside .menu a {
 aside .menu a:hover {
     background: rgba(255,255,255,0.2);
 }
+aside .menu li ul {
+    display: none;
+    border-left: 3px solid rgba(255,255,255,0.4);
+}
 
+aside .menu li ul.open {
+    display: block;
+}
+
+aside .menu li ul.open a {
+    padding-left: 20px;
+}
+.subicon {
+    float: right;
+    padding-right: 20px;
+    line-height: 3em!important;
+}
 main {
     flex: 1;
     margin-left: var(--largura-aside);

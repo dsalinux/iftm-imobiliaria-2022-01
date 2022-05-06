@@ -35,16 +35,16 @@
         </p:panelGrid>
 
         <p:dataTable value="#{usuarioBean.entidades}"  rendered="#{usuarioBean.estado.name() == 'BUSCAR'}" var="user">
-            <p:column>
+            <p:column width="90">
                 <p:commandButton icon="fa fa-edit" update="@form"
                                  action="#{usuarioBean.editar(user)}"></p:commandButton>
                 <p:commandButton icon="fa fa-trash" update="@form"
                                  action="#{usuarioBean.remover(user)}"></p:commandButton>
             </p:column>
-            <p:column>
-                <img src="https://www.gravatar.com/avatar/#{user.emailMD5Hash}?s=48&amp;d=mp"></img>
+            <p:column style="padding: 0!important" width="60">
+                <img style="border-radius: 50%" src="https://www.gravatar.com/avatar/#{user.emailMD5Hash}?s=48&amp;d=mp"></img>
             </p:column>
-            <p:column headerText="Nome">
+            <p:column headerText="Nome" sortBy="#{user.nome}" filterBy="#{user.nome}" filterMatchMode="contains">
                 <h:outputText value="#{user.nome}"></h:outputText>
             </p:column>
             <p:column headerText="Sobrenome">
