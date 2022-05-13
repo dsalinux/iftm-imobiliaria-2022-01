@@ -48,4 +48,7 @@ public abstract class GenericRepository<E, ID> implements Serializable {
     public String getEntityClassName(){
         return this.entityClass.getCanonicalName();
     }
+    public EntityManager getEntityManager(){
+        return this.entityManager;
+    }
 }

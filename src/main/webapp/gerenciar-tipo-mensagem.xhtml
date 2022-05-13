@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="template.xhtml"
+      xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <ui:param name="titulo" value="Gerenciar Tipos Mensagem"></ui:param>
+        <h:form>
+            <im:toolbar crudBean="#{tipoMensagemBean}"></im:toolbar>
+            
+            <p:panelGrid columns="2" rendered="#{tipoMensagemBean.estado.name() != 'BUSCAR'}">
+                <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
+                <p:inputText value="#{tipoMensagemBean.entidade.nome}"
+                             id="txtNome"></p:inputText>
+                <p:outputLabel for="selectTipoSuperior" value="Tipo Mensagem Superior"></p:outputLabel>
+                <p:selectOneMenu id="selectTipoSuperior" converter="tipoMensagemConverter"
+                                 value="#{tipoMensagemBean.entidade.tipoMensagemSuperior}">
+                    <f:attribute name="collectionType" value="java.util.ArrayList" />
+                    <f:selectItem itemLabel="Nenhum"></f:selectItem>
+                    <f:selectItems value="#{tipoMensagemBean.listaTiposSuperiores}"
+                                   var="tipoSuperior" itemLabel="#{tipoSuperior.nome}"
+                                   itemValue="#{tipoSuperior}"></f:selectItems>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            
+            <p:dataTable value="#{tipoMensagemBean.entidades}"  rendered="#{tipoMensagemBean.estado.name() == 'BUSCAR'}" var="entidade">
+                <p:column>
+                    <p:commandButton icon="fa fa-edit" update="@form"
+                                     action="#{tipoMensagemBean.editar(entidade)}"></p:commandButton>
+                    <p:commandButton icon="fa fa-trash" update="@form"
+                                     action="#{tipoMensagemBean.remover(entidade)}"></p:commandButton>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{entidade.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Tipo Superior">
+                    <h:outputText value="#{entidade.tipoMensagemSuperior.nome}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+</ui:composition>
+
