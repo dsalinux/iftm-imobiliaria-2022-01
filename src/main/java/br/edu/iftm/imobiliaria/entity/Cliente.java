@@ -18,18 +18,18 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cliente implements Serializable {
-    
+
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Integer id;
     private String nome;
     private String cpf;
     private String rg;
     @Temporal(TemporalType.DATE)
-    @Column(name="data_nascimento")
+    @Column(name = "data_nascimento")
     private Date dataNascimento;
     private String email;
     private String endereco;
-    
+
 }

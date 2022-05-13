@@ -9,7 +9,7 @@
     <ui:param name="titulo" value="Gerenciar Imagem"></ui:param>
     <h:form>
         <im:toolbar crudBean="#{imagemBean}"/>
-        <p:panelGrid columns="2" rendered="#{imagemBean.estado.url() != 'BUSCAR'}">
+        <p:panelGrid columns="2" rendered="#{imagemBean.estado.name() != 'BUSCAR'}">
             <p:outputLabel for="txtNome" value="URL"></p:outputLabel>
             <p:inputText value="#{imagemBean.entidade.url}"
                          id="txtNome"></p:inputText>
@@ -19,7 +19,7 @@
 
         </p:panelGrid>
 
-        <p:dataTable value="#{imagemBean.entidades}"  rendered="#{imagemBean.estado.url() == 'BUSCAR'}" var="entidade">
+        <p:dataTable value="#{imagemBean.entidades}"  rendered="#{imagemBean.estado.name() == 'BUSCAR'}" var="entidade">
             <p:column>
                 <p:commandButton icon="fa fa-edit" update="@form"
                                  action="#{imagemBean.editar(entidade)}"></p:commandButton>
