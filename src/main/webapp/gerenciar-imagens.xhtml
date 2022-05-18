@@ -7,7 +7,7 @@
                 template="template.xhtml"
                 xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp">
     <ui:param name="titulo" value="Gerenciar Imagem"></ui:param>
-    <h:form>
+    <h:form  enctype="multipart/form-data" >
         <im:toolbar crudBean="#{imagemBean}"/>
         <p:panelGrid columns="2" rendered="#{imagemBean.estado.name() != 'BUSCAR'}">
             <p:outputLabel for="txtNome" value="URL"></p:outputLabel>
@@ -16,6 +16,8 @@
             <p:outputLabel for="txtCPF" value="Tipo de imagem"></p:outputLabel>
             <p:inputText value="#{imagemBean.entidade.content_type}"
                          id="txtCPF"></p:inputText>
+              <p:fileUpload value="#{imagemBean.file}" mode="simple" skinSimple="true"/>
+            <p:commandButton value="Submit" ajax="false" action="#{imagemBean.upload}" styleClass="p-mt-3 ui-button-outlined p-d-block"/>
 
         </p:panelGrid>
 
