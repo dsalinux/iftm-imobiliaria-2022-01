@@ -10,35 +10,12 @@
     <h:form  enctype="multipart/form-data" >
         <im:toolbar crudBean="#{imagemBean}"/>
         <p:panelGrid columns="2" rendered="#{imagemBean.estado.name() != 'BUSCAR'}">
-            <p:outputLabel for="txtNome" value="URL"></p:outputLabel>
-            <p:inputText value="#{imagemBean.entidade.url}"
-                         id="txtNome"></p:inputText>
-            <p:outputLabel for="txtCPF" value="Tipo de imagem"></p:outputLabel>
-            <p:inputText value="#{imagemBean.entidade.content_type}"
-                         id="txtCPF"></p:inputText>
-              <p:fileUpload value="#{imagemBean.file}" mode="simple" skinSimple="true"/>
-            <p:commandButton value="Submit" ajax="false" action="#{imagemBean.upload}" styleClass="p-mt-3 ui-button-outlined p-d-block"/>
-
+            <p:fileUpload accept=".png,.jpg" value="#{imagemBean.file}" mode="simple" skinSimple="true"/>
+            <p:commandButton update="@form"  value="Submit" ajax="false" action="#{imagemBean.upload}" 
+                             styleClass="p-mt-3 ui-button-outlined p-d-block"/>
         </p:panelGrid>
 
-        <p:dataTable value="#{imagemBean.entidades}"  rendered="#{imagemBean.estado.name() == 'BUSCAR'}" var="entidade">
-            <p:column>
-                <p:commandButton icon="fa fa-edit" update="@form"
-                                 action="#{imagemBean.editar(entidade)}"></p:commandButton>
-                <p:commandButton icon="fa fa-trash" update="@form"
-                                 action="#{imagemBean.remover(entidade)}"></p:commandButton>
-            </p:column>
-            <p:column headerText="ID">
-                <h:outputText value="#{entidade.id}"></h:outputText>
-            </p:column>
-            <p:column headerText="URL" filterBy="#{entidade.url}">
-                <h:outputText value="#{entidade.url}"></h:outputText>
-            </p:column>
-            <p:column headerText="Tipo de imagem">
-                <h:outputText value="#{entidade.content_type}"></h:outputText>
-            </p:column>
 
-        </p:dataTable>
     </h:form>
 
 </ui:composition>
