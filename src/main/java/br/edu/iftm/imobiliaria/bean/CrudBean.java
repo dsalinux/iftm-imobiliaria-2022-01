@@ -27,7 +27,14 @@ public abstract class CrudBean<E, L extends CrudLogic<E, ?>> extends JSFUtil {
     }
     
     public CrudBean(Class<E> classeEntidade) {
-        this.classeEntidade = classeEntidade;
+        try {
+            this.classeEntidade = classeEntidade;
+            entidade = this.classeEntidade
+                    .getDeclaredConstructor().newInstance();
+        } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            addErro("Erro ao tentar criar uma nova entidade.");
+            Logger.getLogger(CrudBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void novo(){
         try {
@@ -35,7 +42,7 @@ public abstract class CrudBean<E, L extends CrudLogic<E, ?>> extends JSFUtil {
                     .getDeclaredConstructor().newInstance();
             this.estado = Estado.CRIAR;
         } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            addErro("Erro ao tentar criar um novo usuário.");
+            addErro("Erro ao tentar criar uma nova entidade.");
             Logger.getLogger(CrudBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -80,7 +87,7 @@ public abstract class CrudBean<E, L extends CrudLogic<E, ?>> extends JSFUtil {
                 this.estado = Estado.BUSCAR;
                 return;
             }
-            this.entidades = getLogic().buscar(null);
+            this.entidades = getLogic().buscar(this.entidade);
         } catch (ErroNegocioException ex) {
             addAviso(ex);
         } catch (ErroSistemaException ex) {

@@ -55,7 +55,7 @@ public class UsuarioLogic implements CrudLogic<Usuario, Integer>{
 
     @Override
     public List<Usuario> buscar(Usuario entidade)  throws ErroNegocioException, ErroSistemaException{
-        return repository.buscar();
+        return repository.buscar(entidade);
     }
     
 }

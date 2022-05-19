@@ -11,7 +11,12 @@
     <ui:param name="titulo" value="Gerenciar Usuário"></ui:param>
     <h:form>
         <im:toolbar crudBean="#{usuarioBean}"></im:toolbar>
-
+        
+        <p:panelGrid columns="2" rendered="#{usuarioBean.estado.name() == 'BUSCAR'}">
+            <p:outputLabel for="txtSearchEmail" value="E-mail"></p:outputLabel>
+            <p:inputText value="#{usuarioBean.entidade.email}"
+                         id="txtSearchEmail"></p:inputText>
+        </p:panelGrid>
         <p:panelGrid columns="2" rendered="#{usuarioBean.estado.name() != 'BUSCAR'}">
             <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
             <p:inputText value="#{usuarioBean.entidade.nome}"
