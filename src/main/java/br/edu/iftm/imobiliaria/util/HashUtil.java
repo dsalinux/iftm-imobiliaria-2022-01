@@ -38,4 +38,13 @@ public class HashUtil {
         }
         return null;
     }
+    public static String sha256Hex(byte[] data) {
+        try {
+            MessageDigest md
+                    = MessageDigest.getInstance("SHA-256");
+            return hex(md.digest(data));
+        } catch (NoSuchAlgorithmException e) {
+        }
+        return null;
+    }
 }
