@@ -34,7 +34,7 @@ public class Banner implements Serializable {
     private String link;
 
     @ManyToOne   
-    @JoinColumn(name = "imagem_id", insertable = false, updatable = false)
+    @JoinColumn(name = "imagem_id")
     private Imagem imagem;
     
 }

@@ -22,10 +22,10 @@
 
             <p:outputLabel value="Selecionar Imagem" for="selectImagem"></p:outputLabel>
             <p:selectOneMenu id="selectImagem" value=
-                                  "#{bannerBean.entidade.imagem}" label="Cities" style="width: 15rem"
-                                  filter="true" filterMatchMode="startsWith" panelStyle=
-                                  "width: 15rem" 
-                                  dynamic="true" >
+                             "#{bannerBean.entidade.imagem}" label="Cities" style="width: 15rem"
+                             filter="true" filterMatchMode="startsWith" panelStyle=
+                             "width: 15rem" 
+                             dynamic="true" converter="imagemConverter">
                 <f:attribute name="collectionType" value="java.util.ArrayList" />
                 <f:selectItems value="#{bannerBean.imagens}" var="i" itemLabel="#{i.url}" itemValue="#{i}"/>
             </p:selectOneMenu>
@@ -52,6 +52,7 @@
 
         </p:dataTable>
     </h:form>
+
 
 </ui:composition>
 

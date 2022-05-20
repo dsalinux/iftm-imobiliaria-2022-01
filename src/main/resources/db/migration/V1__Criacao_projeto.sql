@@ -122,7 +122,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`imagem` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(60) NOT NULL,
   `content_type` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`id`))
@@ -148,7 +148,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`banner` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(150) NULL DEFAULT NULL,
   `link` VARCHAR(200) NULL DEFAULT NULL,
   `imagem_id` INT NOT NULL,
