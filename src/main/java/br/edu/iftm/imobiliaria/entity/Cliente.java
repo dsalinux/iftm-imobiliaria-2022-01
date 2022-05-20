@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,18 +21,22 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cliente implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
     private String nome;
-    private String cpf;
-    private String rg;
+    @Column(name = "cpf_cnpj")
+    private String cpfCnpj;
     @Temporal(TemporalType.DATE)
-    @Column(name="data_nascimento")
-    private Date dataNascimento;
-    private String email;
-    private String endereco;
-    
+    @Column(name = "data_desativacao")
+    private Date dataDesativacao;
+    private String telefone;
+
+    @ManyToOne
+    @JoinColumn(name = "endereco_id")
+    private Endereco endereco = new Endereco ();
+
+
 }

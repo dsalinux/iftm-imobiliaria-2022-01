@@ -13,6 +13,73 @@
             <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
             <p:inputText value="#{clienteBean.entidade.nome}"
                          id="txtNome"></p:inputText>
+<<<<<<< HEAD
+            <p:outputLabel for="txtCPFCNPJ" value="CPF/CNPJ"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.cpfCnpj}"
+                         id="txtCPFCNPJ"></p:inputText>
+            <p:outputLabel for="txtDataDesativacao" value="Data Desativacao"></p:outputLabel>
+            <p:calendar id="txtDataDesativacao" value="#{clienteBean.entidade.dataDesativacao}"></p:calendar>
+            <p:outputLabel for="txtTelefone" value="Telefone"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.telefone}"
+                         id="txtTelefone"></p:inputText>
+
+        </p:panelGrid>
+
+        <p:panelGrid columns="2" rendered="#{clienteBean.estado.name() != 'BUSCAR'}">
+            <p:outputLabel for="txtLogradouro" value="Logradouro"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.logradouro}"
+                         id="txtLogradouro"></p:inputText>
+            <p:outputLabel for="txtNumero" value="Numero"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.numero}"
+                         id="txtNumero"></p:inputText>
+            <p:outputLabel for="txtComplemento" value="Complemento"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.complemento}"
+                         id="txtComplemento"></p:inputText>
+            <p:outputLabel for="txtBairro" value="Bairro"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.bairro}"
+                         id="txtBairro"></p:inputText>
+            <p:outputLabel for="txtCidade" value="Cidade"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.cidade}"
+                         id="txtCidade"></p:inputText>
+            <p:outputLabel for="txtCEP" value="CEP"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.cep}"
+                         id="txtCEP"></p:inputText>
+            <p:outputLabel for="txtLatitude" value="Latitude"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.latitude}"
+                         id="txtLatitude"></p:inputText>
+            <p:outputLabel for="txtLongitude" value="Longitude"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.longitude}"
+                         id="txtLongitude"></p:inputText>
+
+        </p:panelGrid>
+
+        <p:dataTable value="#{clienteBean.entidades}"  rendered="#{clienteBean.estado.name() == 'BUSCAR'}" var="entidade">
+            <p:column>
+                <p:commandButton icon="fa fa-edit" update="@form"
+                                 action="#{clienteBean.editar(entidade)}"></p:commandButton>
+                <p:commandButton icon="fa fa-trash" update="@form"
+                                 action="#{clienteBean.remover(entidade)}"></p:commandButton>
+            </p:column>
+            <p:column headerText="ID">
+                <h:outputText value="#{entidade.id}"></h:outputText>
+            </p:column>
+            <p:column headerText="Nome" filterBy="#{entidade.nome}">
+                <h:outputText value="#{entidade.nome}"></h:outputText>
+            </p:column>
+            <p:column headerText="CPF/CNPJ">
+                <h:outputText value="#{entidade.cpfCnpj}"></h:outputText>
+            </p:column>
+            <p:column headerText="Telefone">
+                <h:outputText value="#{entidade.telefone}"></h:outputText>
+            </p:column>
+            <p:column headerText="Endereco">
+                <h:outputText value="#{entidade.endereco.logradouro}, #{entidade.endereco.numero}"></h:outputText>
+            </p:column>
+        </p:dataTable>
+
+       
+            
+=======
             <p:outputLabel for="txtCPF" value="CPF"></p:outputLabel>
             <p:inputText value="#{clienteBean.entidade.cpf}"
                          id="txtCPF"></p:inputText>
@@ -50,6 +117,7 @@
                 <h:outputText value="#{entidade.email}"></h:outputText>
             </p:column>
         </p:dataTable>
+>>>>>>> origin/master
     </h:form>
 
 </ui:composition>

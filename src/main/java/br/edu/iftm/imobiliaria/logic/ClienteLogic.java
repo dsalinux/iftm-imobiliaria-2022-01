@@ -1,7 +1,9 @@
 package br.edu.iftm.imobiliaria.logic;
 
 import br.edu.iftm.imobiliaria.entity.Cliente;
+import br.edu.iftm.imobiliaria.entity.Endereco;
 import br.edu.iftm.imobiliaria.repository.ClienteRepository;
+import br.edu.iftm.imobiliaria.repository.EnderecoRepository;
 import br.edu.iftm.imobiliaria.util.exception.ErroNegocioException;
 import br.edu.iftm.imobiliaria.util.exception.ErroSistemaException;
 import java.util.List;
@@ -11,9 +13,14 @@ public class ClienteLogic implements CrudLogic<Cliente, Integer>{
 
     @Inject
     private ClienteRepository repository;
+    @Inject
+    private EnderecoRepository enderecoRepository;
     
     @Override
     public Cliente salvar(Cliente entidade) throws ErroNegocioException, ErroSistemaException {
+        Endereco e = entidade.getEndereco();
+        e = this.enderecoRepository.salvar(e);
+        entidade.setEndereco(e);
         return repository.salvar(entidade);
     }
 
