@@ -57,7 +57,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`cliente` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(80) NOT NULL,
   `cpf_cnpj` VARCHAR(45) NOT NULL,
   `data_desativacao` DATETIME NULL DEFAULT NULL,
@@ -114,7 +114,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`tipo_imovel` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `comercial` BIT(1) NOT NULL,
   PRIMARY KEY (`id`))
@@ -163,7 +163,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`movimento_caixa` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(80) NOT NULL,
   `tipo_movimento` VARCHAR(45) NOT NULL,
   `data_movimento` DATETIME NOT NULL,
@@ -187,10 +187,10 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`endereco` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `logradouro` VARCHAR(120) NOT NULL,
   `numero` VARCHAR(45) NOT NULL,
-  `complemeto` VARCHAR(45) NULL DEFAULT NULL,
+  `complemento` VARCHAR(45) NULL DEFAULT NULL,
   `bairro` VARCHAR(45) NOT NULL,
   `cidade` VARCHAR(45) NOT NULL,
   `cep` VARCHAR(45) NOT NULL,
@@ -201,7 +201,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`configuracoes` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `email_envio` VARCHAR(45) NULL DEFAULT NULL,
   `senha_envio` VARCHAR(45) NULL DEFAULT NULL,
   `emails_recebimento` VARCHAR(45) NULL DEFAULT NULL,
@@ -248,7 +248,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`sobre` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NOT NULL,
   `texto` LONGTEXT NOT NULL,
   PRIMARY KEY (`id`))
@@ -256,7 +256,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `imobiliaria_if`.`orientacoes` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NOT NULL,
   `texto` LONGTEXT NOT NULL,
   PRIMARY KEY (`id`))

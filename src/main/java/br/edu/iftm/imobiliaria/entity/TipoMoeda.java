@@ -1,38 +1,31 @@
 package br.edu.iftm.imobiliaria.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Column;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "tipo_moeda")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cliente implements Serializable {
-
-    @EqualsAndHashCode.Include
+public class TipoMoeda implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Integer id;
-    private String nome;
-    @Column(name = "cpf_cnpj")
-    private String cpfCnpj;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_nascimento")
-    private Date dataNascimento;
-    private String email;
-    private String endereco;
-
+    private String descricao;
+    
+    @ManyToOne
+    @JoinColumn(name = "tipo_moeda_id")
+    private TipoMoeda tipoMoedaSuperior;
+    
 }

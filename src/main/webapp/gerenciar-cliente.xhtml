@@ -13,20 +13,42 @@
             <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
             <p:inputText value="#{clienteBean.entidade.nome}"
                          id="txtNome"></p:inputText>
-            <p:outputLabel for="txtCPF" value="CPF"></p:outputLabel>
-            <p:inputText value="#{clienteBean.entidade.cpf}"
-                         id="txtCPF"></p:inputText>
-            <p:outputLabel for="txtRG" value="RG"></p:outputLabel>
-            <p:inputText value="#{clienteBean.entidade.rg}"
-                         id="txtRG"></p:inputText>
-            <p:outputLabel for="txtDataNascimento" value="Data Nascimento"></p:outputLabel>
-            <p:calendar id="txtDataNascimento" value="#{clienteBean.entidade.dataNascimento}"></p:calendar>
-            <p:outputLabel for="txtEmail" value="Email"></p:outputLabel>
-            <p:inputText value="#{clienteBean.entidade.email}"
-                         id="txtEmail"></p:inputText>
-            <p:outputLabel for="txtEndereco" value="Endereco"></p:outputLabel>
-            <p:inputText value="#{clienteBean.entidade.endereco}"
-                         id="txtEndereco"></p:inputText>
+            <p:outputLabel for="txtCPFCNPJ" value="CPF/CNPJ"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.cpfCnpj}"
+                         id="txtCPFCNPJ"></p:inputText>
+            <p:outputLabel for="txtDataDesativacao" value="Data Desativacao"></p:outputLabel>
+            <p:calendar id="txtDataDesativacao" value="#{clienteBean.entidade.dataDesativacao}"></p:calendar>
+            <p:outputLabel for="txtTelefone" value="Telefone"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.telefone}"
+                         id="txtTelefone"></p:inputText>
+
+        </p:panelGrid>
+
+        <p:panelGrid columns="2" rendered="#{clienteBean.estado.name() != 'BUSCAR'}">
+            <p:outputLabel for="txtLogradouro" value="Logradouro"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.logradouro}"
+                         id="txtLogradouro"></p:inputText>
+            <p:outputLabel for="txtNumero" value="Numero"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.numero}"
+                         id="txtNumero"></p:inputText>
+            <p:outputLabel for="txtComplemento" value="Complemento"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.complemento}"
+                         id="txtComplemento"></p:inputText>
+            <p:outputLabel for="txtBairro" value="Bairro"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.bairro}"
+                         id="txtBairro"></p:inputText>
+            <p:outputLabel for="txtCidade" value="Cidade"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.cidade}"
+                         id="txtCidade"></p:inputText>
+            <p:outputLabel for="txtCEP" value="CEP"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.cep}"
+                         id="txtCEP"></p:inputText>
+            <p:outputLabel for="txtLatitude" value="Latitude"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.latitude}"
+                         id="txtLatitude"></p:inputText>
+            <p:outputLabel for="txtLongitude" value="Longitude"></p:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.endereco.longitude}"
+                         id="txtLongitude"></p:inputText>
 
         </p:panelGrid>
 
@@ -43,11 +65,14 @@
             <p:column headerText="Nome" filterBy="#{entidade.nome}">
                 <h:outputText value="#{entidade.nome}"></h:outputText>
             </p:column>
-            <p:column headerText="CPF">
-                <h:outputText value="#{entidade.cpf}"></h:outputText>
+            <p:column headerText="CPF/CNPJ">
+                <h:outputText value="#{entidade.cpfCnpj}"></h:outputText>
             </p:column>
-            <p:column headerText="Email">
-                <h:outputText value="#{entidade.email}"></h:outputText>
+            <p:column headerText="Telefone">
+                <h:outputText value="#{entidade.telefone}"></h:outputText>
+            </p:column>
+            <p:column headerText="Endereco">
+                <h:outputText value="#{entidade.endereco.logradouro}, #{entidade.endereco.numero}"></h:outputText>
             </p:column>
         </p:dataTable>
     </h:form>

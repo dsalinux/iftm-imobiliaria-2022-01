@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,22 +14,21 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "movimento_caixa")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cliente implements Serializable {
-
-    @EqualsAndHashCode.Include
+public class MovimentoCaixa implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Integer id;
-    private String nome;
-    @Column(name = "cpf_cnpj")
-    private String cpfCnpj;
+    private String descricao;
+    private String tipo_movimento;
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_nascimento")
-    private Date dataNascimento;
-    private String email;
-    private String endereco;
-
+    @Column(name="data_movimento")
+    private Date dataMovimento;
+    private float valor;
+    private int tipo_moeda_id;
+    
 }
