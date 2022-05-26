@@ -8,7 +8,7 @@
                 xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:param name="titulo" value="Gerenciar Banner"></ui:param>
-    <h:form>
+    <h:form enctype="multipart/form-data">
         <im:toolbar crudBean="#{bannerBean}"/>
         <p:panelGrid columns="2" rendered="#{bannerBean.estado.name() != 'BUSCAR'}">
             <p:outputLabel for="txtNome" value="Descricao"></p:outputLabel>
@@ -18,17 +18,11 @@
             <p:inputText value="#{bannerBean.entidade.link}"
                          id="txtCPF"></p:inputText>
 
+            <p:fileUpload label="Imagem do usuário" accept=".png,.jpg,.jpeg" value="#{bannerBean.file}" mode="simple" skinSimple="true"/>
 
 
-            <p:outputLabel value="Selecionar Imagem" for="selectImagem"></p:outputLabel>
-            <p:selectOneMenu id="selectImagem" value=
-                             "#{bannerBean.entidade.imagem}" label="Cities" style="width: 15rem"
-                             filter="true" filterMatchMode="startsWith" panelStyle=
-                             "width: 15rem" 
-                             dynamic="true" converter="imagemConverter">
-                <f:attribute name="collectionType" value="java.util.ArrayList" />
-                <f:selectItems value="#{bannerBean.imagens}" var="i" itemLabel="#{i.url}" itemValue="#{i}"/>
-            </p:selectOneMenu>
+
+
 
 
         </p:panelGrid>

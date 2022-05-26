@@ -13,13 +13,10 @@
     <h:form  enctype="multipart/form-data" >
         <p:commandButton value="Upload em imagem" type="button" onclick="PF('dlg2').show();" />
         <p:dialog header="Upload em imagem" widgetVar="dlg2" modal="true" height="130">
-
-
-
             <im crudBean="#{imagemBean}"/>
             <p:panelGrid columns="2">
-                <p:fileUpload accept=".png,.jpg" value="#{imagemBean.file}" mode="simple" skinSimple="true"/>
-                <p:commandButton update="@form"  value="Submit" ajax="false" action="#{imagemBean.upload}" 
+                <p:fileUpload accept=".png,.jpg,.jpeg" value="#{imagemBean.file}" mode="simple" skinSimple="true"/>
+                <p:commandButton  value="Submit" ajax="false" action="#{imagemBean.upload}" 
                                  styleClass="p-mt-3 ui-button-outlined p-d-block"/>
             </p:panelGrid>
         </p:dialog> 

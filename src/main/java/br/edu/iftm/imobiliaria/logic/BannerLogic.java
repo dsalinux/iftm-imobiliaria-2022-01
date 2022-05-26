@@ -17,6 +17,7 @@ public class BannerLogic implements CrudLogic<Banner, Integer>{
     
     @Override
     public Banner salvar(Banner entidade) throws ErroNegocioException, ErroSistemaException {
+        
         return repository.salvar(entidade);
     }
 
