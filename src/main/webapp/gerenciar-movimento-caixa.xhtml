@@ -5,25 +5,32 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="template.xhtml"
-                xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp">
-    <ui:param name="titulo" value="Gerenciar Cliente"></ui:param>
+                xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:param name="titulo" value="Gerenciar Movimento de Caixa"></ui:param>
     <h:form>
-        <im:toolbar crudBean="#{movimentoCaixaBean}"/>
+        <im:toolbar crudBean="#{movimentoCaixaBean}"></im:toolbar>
+
         <p:panelGrid columns="2" rendered="#{movimentoCaixaBean.estado.name() != 'BUSCAR'}">
-            <p:outputLabel for="txtDescricao" value="Descricao"></p:outputLabel>
+
+            <p:outputLabel for="txtDescricao" value="Descrição"></p:outputLabel>
             <p:inputText value="#{movimentoCaixaBean.entidade.descricao}"
                          id="txtDescricao"></p:inputText>
-            <p:outputLabel for="txttipo_Movimento" value="tipo_Movimento"></p:outputLabel>
-            <p:inputText value="#{movimentoCaixaBean.entidade.tipo_movimento}"
-                         id="txttipo_Movimento"></p:inputText>
-            <p:outputLabel for="txtdata_movimento" value="data_Movimento"></p:outputLabel>
-            <p:calendar id="txtdata_movimento" value="#{movimentoCaixaBean.entidade.dataMovimento}"></p:calendar>
+            <p:outputLabel for="radioTipo" value="Tipo Movimento"></p:outputLabel>
+            <p:selectOneRadio id="radioTipo" value="#{movimentoCaixaBean.entidade.tipoMovimento}">
+                <f:selectItem itemLabel="Entrada" itemValue="ENTRADA" noSelectionOption="true"></f:selectItem>
+                <f:selectItem itemLabel="Saída" itemValue="SAIDA"></f:selectItem>
+            </p:selectOneRadio>
+            <p:outputLabel for="selectTipoMoeda" value="Tipo Moeda"></p:outputLabel>
+            <p:selectOneMenu id="selectTipoMoeda" value="#{movimentoCaixaBean.entidade.tipoMoeda}"
+                             converter="tipoMoedaConverter">
+                <f:attribute name="collectionType" value="java.util.ArrayList" />
+                <f:selectItems value="#{movimentoCaixaBean.tiposMoeda}" var="tipoMoeda"
+                               itemLabel="#{tipoMoeda.descricao}" itemValue="#{tipoMoeda}"></f:selectItems>
+            </p:selectOneMenu>
             <p:outputLabel for="txtValor" value="Valor"></p:outputLabel>
-            <p:inputText value="#{movimentoCaixaBean.entidade.valor}"
-                         id="txtValor"></p:inputText>
-            <p:outputLabel for="txttipo_Moeda_id" value="tipo_Moeda_id"></p:outputLabel>
-            <p:inputText value="#{movimentoCaixaBean.entidade.tipo_moeda_id}"
-                         id="txttipo_Moeda_id"></p:inputText>
+            <p:inputNumber id="txtValor" value="#{movimentoCaixaBean.entidade.valor}"></p:inputNumber>
 
         </p:panelGrid>
 
@@ -34,18 +41,32 @@
                 <p:commandButton icon="fa fa-trash" update="@form"
                                  action="#{movimentoCaixaBean.remover(entidade)}"></p:commandButton>
             </p:column>
-            <p:column headerText="ID">
-                <h:outputText value="#{entidade.id}"></h:outputText>
-            </p:column>
-            <p:column headerText="Descricao" filterBy="#{entidade.descricao}">
+            <p:column headerText="Descrição">
                 <h:outputText value="#{entidade.descricao}"></h:outputText>
             </p:column>
-            <p:column headerText="tipo_Movimento">
-                <h:outputText value="#{entidade.tipo_movimento}"></h:outputText>
+            <p:column headerText="Data">
+                <h:outputText value="#{entidade.dataMovimento}">
+                    <f:convertDateTime dateStyle="short" ></f:convertDateTime>
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Hora">
+                <h:outputText value="#{entidade.dataMovimento}">
+                    <f:convertDateTime dateStyle="short" type="time"></f:convertDateTime>
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Tipo Moeda">
+                <i class="fas fa-money-bill"></i>
+                <h:outputText value=" #{entidade.tipoMoeda.descricao}"></h:outputText>
             </p:column>
             <p:column headerText="Valor">
-                <h:outputText value="#{entidade.valor}"></h:outputText>
+                <h:outputText value="#{entidade.valor}"  style="color: #{entidade.tipoMovimento == 'SAIDA'?'red':'green'}">
+                    <f:convertNumber currencySymbol="R$" type="currency"></f:convertNumber>
+                </h:outputText>
             </p:column>
+            <p:column>
+                    <i class="fas fa-caret-#{entidade.tipoMovimento == 'SAIDA'?'up':'down'}" style="color: #{entidade.tipoMovimento == 'SAIDA'?'red':'green'}; font-size: 1.5em"></i>
+            </p:column>
+            
         </p:dataTable>
     </h:form>
 

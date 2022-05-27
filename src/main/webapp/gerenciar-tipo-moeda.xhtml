@@ -8,37 +8,26 @@
       xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-        <ui:param name="titulo" value="Gerenciar Tipos Moeda"></ui:param>
+        <ui:param name="titulo" value="Gerenciar Tipos de Moeda"></ui:param>
         <h:form>
             <im:toolbar crudBean="#{tipoMoedaBean}"></im:toolbar>
             
             <p:panelGrid columns="2" rendered="#{tipoMoedaBean.estado.name() != 'BUSCAR'}">
-                <p:outputLabel for="txtDescricao" value="Descricao"></p:outputLabel>
+
+                <p:outputLabel for="txtDescricao" value="Descrição"></p:outputLabel>
                 <p:inputText value="#{tipoMoedaBean.entidade.descricao}"
                              id="txtDescricao"></p:inputText>
-                <p:outputLabel for="selectTipoSuperior" value="Tipo Moeda Superior"></p:outputLabel>
-                <p:selectOneMenu id="selectTipoSuperior" converter="tipoMoedaConverter"
-                                 value="#{tipoMoedaBean.entidade.tipoMoedaSuperior}">
-                    <f:attribute name="collectionType" value="java.util.ArrayList" />
-                    <f:selectItem itemLabel="Nenhum"></f:selectItem>
-                    <f:selectItems value="#{tipoMoedaBean.listaTiposSuperiores}"
-                                   var="tipoSuperior" itemLabel="#{tipoSuperior.descricao}"
-                                   itemValue="#{tipoSuperior}"></f:selectItems>
-                </p:selectOneMenu>
             </p:panelGrid>
             
-            <p:dataTable value="#{tipoMoedaBean.entidades}"  rendered="#{tipoMoedaBean.estado.name() == 'BUSCAR'}" var="entidade">
+            <p:dataTable value="#{tipoMoedaBean.entidades}"  rendered="#{tipoMoedaBean.estado.name() == 'BUSCAR'}" var="user">
                 <p:column>
                     <p:commandButton icon="fa fa-edit" update="@form"
-                                     action="#{tipoMoedaBean.editar(entidade)}"></p:commandButton>
+                                     action="#{tipoMoedaBean.editar(user)}"></p:commandButton>
                     <p:commandButton icon="fa fa-trash" update="@form"
-                                     action="#{tipoMoedaBean.remover(entidade)}"></p:commandButton>
+                                     action="#{tipoMoedaBean.remover(user)}"></p:commandButton>
                 </p:column>
-                <p:column headerText="Descricao">
-                    <h:outputText value="#{entidade.descricao}"></h:outputText>
-                </p:column>
-                <p:column headerText="Tipo Superior">
-                    <h:outputText value="#{entidade.tipoMoedaSuperior.descricao}"></h:outputText>
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{user.descricao}"></h:outputText>
                 </p:column>
             </p:dataTable>
         </h:form>

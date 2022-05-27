@@ -7,6 +7,4 @@ public class TipoMoedaRepository extends GenericRepository<TipoMoeda, Integer>{
     public TipoMoedaRepository() {
         super(TipoMoeda.class);
     }
-    
-    
 }

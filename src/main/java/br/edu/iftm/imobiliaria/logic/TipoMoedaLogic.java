@@ -8,36 +8,32 @@ import br.edu.iftm.imobiliaria.util.exception.ErroSistemaException;
 import java.util.List;
 import javax.inject.Inject;
 
-/**
- *
- * @author danilo
- */
 public class TipoMoedaLogic implements CrudLogic<TipoMoeda, Integer>{
 
     @Inject
     private TipoMoedaRepository repository;
     
     @Override
-    public TipoMoeda salvar(TipoMoeda entidade) throws ErroNegocioException, ErroSistemaException {
+    public TipoMoeda salvar(TipoMoeda entidade)  throws ErroNegocioException, ErroSistemaException{
         if(Assert.isStringEmpty(entidade.getDescricao())){
-            throw new ErroNegocioException("Nome do Tipo Mensagem Obrigatório.");
+           throw new ErroNegocioException("Informe a descrição.");
         }
-        return repository.salvar(entidade);
-        
+        entidade = repository.salvar(entidade);
+        return entidade;
     }
 
     @Override
-    public void deletar(TipoMoeda entidade) throws ErroNegocioException, ErroSistemaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deletar(TipoMoeda entidade)  throws ErroNegocioException, ErroSistemaException{
+        repository.remover(entidade.getId());
     }
 
     @Override
-    public TipoMoeda bucarPorID(TipoMoeda entidade) throws ErroNegocioException, ErroSistemaException {
+    public TipoMoeda bucarPorID(TipoMoeda entidade)  throws ErroNegocioException, ErroSistemaException{
         return repository.findById(entidade.getId());
     }
 
     @Override
-    public List<TipoMoeda> buscar(TipoMoeda entidade) throws ErroNegocioException, ErroSistemaException {
+    public List<TipoMoeda> buscar(TipoMoeda entidade)  throws ErroNegocioException, ErroSistemaException{
         return repository.buscar();
     }
     

@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,16 +15,11 @@ import lombok.EqualsAndHashCode;
 @Table(name = "tipo_moeda")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class TipoMoeda implements Serializable {
+public class TipoMoeda  implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
     private String descricao;
-    
-    @ManyToOne
-    @JoinColumn(name = "tipo_moeda_id")
-    private TipoMoeda tipoMoedaSuperior;
-    
 }
