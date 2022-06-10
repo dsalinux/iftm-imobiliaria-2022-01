@@ -2,6 +2,7 @@ package br.edu.iftm.imobiliaria.bean;
 
 import br.edu.iftm.imobiliaria.entity.Banner;
 import br.edu.iftm.imobiliaria.entity.Imagem;
+import br.edu.iftm.imobiliaria.interceptors.anotation.Transacao;
 import br.edu.iftm.imobiliaria.logic.BannerLogic;
 import br.edu.iftm.imobiliaria.logic.ImagemLogic;
 import br.edu.iftm.imobiliaria.util.HashUtil;
@@ -62,6 +63,7 @@ public class BannerBean extends CrudBean<Banner, BannerLogic> {
     }
 
     @Override
+    @Transacao
     public void salvar() {
         try {
             Imagem imagem = imagemBean.getLogic().uploadToSystem(file);

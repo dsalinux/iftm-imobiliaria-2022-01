@@ -1,5 +1,6 @@
 package br.edu.iftm.imobiliaria.bean;
 
+import br.edu.iftm.imobiliaria.interceptors.anotation.Transacao;
 import br.edu.iftm.imobiliaria.logic.CrudLogic;
 import br.edu.iftm.imobiliaria.util.exception.ErroNegocioException;
 import br.edu.iftm.imobiliaria.util.exception.ErroSistemaException;
@@ -46,7 +47,8 @@ public abstract class CrudBean<E, L extends CrudLogic<E, ?>> extends JSFUtil {
             Logger.getLogger(CrudBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    @Transacao
     public void salvar(){
         try {
             getLogic().salvar(entidade);
@@ -71,9 +73,13 @@ public abstract class CrudBean<E, L extends CrudLogic<E, ?>> extends JSFUtil {
             addErro(ex);
         }
     }
+    
+    @Transacao
     public void remover(E entidade){
         try {
             this.getLogic().deletar(entidade);
+            this.entidades.remove(entidade);
+            addInfo("Removido com sucesso.");
         } catch (ErroNegocioException ex) {
             addAviso(ex);
         } catch (ErroSistemaException ex) {

@@ -1,6 +1,7 @@
 package br.edu.iftm.imobiliaria.repository;
 
 import br.edu.iftm.imobiliaria.entity.Usuario;
+import br.edu.iftm.imobiliaria.interceptors.anotation.Transacao;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Inject;
@@ -22,17 +23,13 @@ public abstract class GenericRepository<E, ID> implements Serializable {
     }
     
     public E salvar(E entidade) {
-        entityManager.getTransaction().begin();
         entidade = entityManager.merge(entidade);
-        entityManager.getTransaction().commit();
         return entidade;
     }
 
     public void remover(ID id) {
-        entityManager.getTransaction().begin();
         E entidade = entityManager.find(entityClass, id);
         entityManager.remove(entidade);
-        entityManager.getTransaction().commit();
     }
     
     public E findById(ID id){

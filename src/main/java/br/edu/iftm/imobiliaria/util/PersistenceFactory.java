@@ -1,6 +1,8 @@
 package br.edu.iftm.imobiliaria.util;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
@@ -10,12 +12,17 @@ import javax.persistence.Persistence;
 @ApplicationScoped
 public class PersistenceFactory implements Serializable {
 
+     private EntityManager em;
+    
+    List<EntityManager> m = new ArrayList<>();
     private EntityManagerFactory emf = 
             Persistence.createEntityManagerFactory("imobiliariaPU");
 
     @Produces
     public EntityManager getEntityManager() {
-        EntityManager em = emf.createEntityManager();
+        if(em == null || !em.isOpen()){
+            em = emf.createEntityManager();
+        }
         return em;
     }
 }

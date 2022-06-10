@@ -9,19 +9,22 @@ import br.edu.iftm.imobiliaria.util.exception.ErroSistemaException;
 import java.util.List;
 import javax.inject.Inject;
 
-public class ClienteLogic implements CrudLogic<Cliente, Integer>{
+public class ClienteLogic implements CrudLogic<Cliente, Integer> {
 
     @Inject
     private ClienteRepository repository;
     @Inject
     private EnderecoRepository enderecoRepository;
-    
+
     @Override
     public Cliente salvar(Cliente entidade) throws ErroNegocioException, ErroSistemaException {
+
         Endereco e = entidade.getEndereco();
         e = this.enderecoRepository.salvar(e);
         entidade.setEndereco(e);
-        return repository.salvar(entidade);
+        entidade = repository.salvar(entidade);
+
+        return entidade;
     }
 
     @Override
@@ -38,5 +41,5 @@ public class ClienteLogic implements CrudLogic<Cliente, Integer>{
     public List<Cliente> buscar(Cliente entidade) throws ErroNegocioException, ErroSistemaException {
         return repository.buscar();
     }
-    
+
 }

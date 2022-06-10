@@ -1,6 +1,7 @@
 package br.edu.iftm.imobiliaria.logic;
 
 import br.edu.iftm.imobiliaria.entity.Contato;
+import br.edu.iftm.imobiliaria.interceptors.anotation.Transacao;
 import br.edu.iftm.imobiliaria.repository.ContatoRepository;
 import br.edu.iftm.imobiliaria.util.Assert;
 import br.edu.iftm.imobiliaria.util.exception.ErroNegocioException;

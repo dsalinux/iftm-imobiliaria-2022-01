@@ -34,14 +34,11 @@
                 <p:commandButton icon="fa fa-trash" update="@form"
                                  action="#{bannerBean.remover(entidade)}"></p:commandButton>
             </p:column>
-            <p:column headerText="ID">
-                <h:outputText value="#{entidade.id}"></h:outputText>
-            </p:column>
-            <p:column headerText="URL" filterBy="#{entidade.url}">
-                <h:outputText value="#{entidade.url}"></h:outputText>
+            <p:column headerText="Descrição">
+                <h:outputText value="#{entidade.descricao}"></h:outputText>
             </p:column>
             <p:column headerText="Tipo de banner">
-                <h:outputText value="#{entidade.content_type}"></h:outputText>
+                <h:graphicImage url="/imagem?codigo=#{entidade.imagem.url}" height="50px"></h:graphicImage>
             </p:column>
 
         </p:dataTable>
