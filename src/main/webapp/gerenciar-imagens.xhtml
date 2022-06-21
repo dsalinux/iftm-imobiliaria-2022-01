@@ -5,30 +5,13 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="template.xhtml"
-		xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:im="http://xmlns.jcp.org/jsf/composite/imbcomp">
 
     <ui:param name="titulo" value="Gerenciar Imagem"></ui:param>
     
-    <h:form  enctype="multipart/form-data" id="frmImnagem" >
-        <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/" accept=".png, .jpg, .jpeg, .gif" auto="true" 
-                      update="@form" dragDropSupport="true"
-                      mode="advanced" listener="#{imagemBean.upload}"/>
-        
-	
-	<p:selectManyCheckbox id="custom" layout="custom">
-	    <f:selectItems value="#{imagemBean.imagens}" var="entidade"></f:selectItems>
-	</p:selectManyCheckbox>
-
-	<div class="p-grid" style="margin: 0; gap: 1em" >
-	    <p:repeat value="#{imagemBean.imagens}" var="entidade" varStatus="status">
-		    <p:card class="p-col">
-			<f:facet name="title">
-			    <p:checkbox for="#{p:resolveFirstComponentWithId('custom', view).clientId}" itemIndex="#{status.index}"/>
-			</f:facet>
-			<p:graphicImage url="/imagem?codigo=#{entidade.url}" width="100px"></p:graphicImage>
-		    </p:card>
-	    </p:repeat>
-	</div>
+    <h:form  enctype="multipart/form-data">
+        <im:bancoImagem multiple="true"/>
     </h:form>
 
 

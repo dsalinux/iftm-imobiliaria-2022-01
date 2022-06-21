@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="multiple" default="false"
+                      shortDescription="Permite selecionar várias imagens"></cc:attribute>
+        <cc:attribute name="value" required="true" type="br.edu.iftm.imobiliaria.entity.Imagem"
+                      shortDescription="Variável que receberá a(as) imagem(ns) selecionadas"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:button value="Selecionar Imagem" onclick="PF('selecionaImagemDlg').show(); return false;"></p:button>
+        <p:graphicImage id="imgMiniVisualizacao" url="/imagem?codigo=#{cc.attrs.value.url}" width="40px" rendered="#{cc.attrs.value != null}"></p:graphicImage>
+        <p:overlayPanel  showEvent="mouseover" hideEvent="mouseout" for="imgMiniVisualizacao" style="width:350px">
+            <p:graphicImage url="/imagem?codigo=#{cc.attrs.value.url}" width="200px" rendered="#{cc.attrs.value != null}"></p:graphicImage>
+        </p:overlayPanel>
+        <p:dialog widgetVar="selecionaImagemDlg" header="Selecione ou envie uma imagem"
+                  width="70%" height="50vh">
+            
+            <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/" accept=".png, .jpg, .jpeg, .gif" auto="true" 
+                          update="@form" dragDropSupport="true"
+                          mode="advanced" listener="#{imagemBean.upload}"/>
+
+
+            <p:selectManyCheckbox value="#{cc.attrs.value}" converter="imagemConverter" id="checkBoxCustom" layout="custom" rendered="#{cc.attrs.multiple}">
+                <f:selectItems value="#{imagemBean.imagens}" var="entidade" itemValue="#{entidade}" ></f:selectItems>
+            </p:selectManyCheckbox>
+            <p:selectOneRadio  value="#{cc.attrs.value}"  converter="imagemConverter" id="radioCustom" layout="custom" rendered="#{not cc.attrs.multiple}">
+                <f:selectItems value="#{imagemBean.imagens}" var="entidade" itemValue="#{entidade}"></f:selectItems>
+            </p:selectOneRadio>
+
+            <div class="p-grid" style="margin: 0; gap: 1em" >
+                <p:repeat value="#{imagemBean.imagens}" var="entidade" varStatus="status">
+                    <p:card class="p-col">
+                        <f:facet name="title">
+                            <p:checkbox for="#{p:resolveFirstComponentWithId('checkBoxCustom', view).clientId}" 
+                                         rendered="#{cc.attrs.multiple}" itemIndex="#{status.index}"/>
+                            <p:radioButton for="#{p:resolveFirstComponentWithId('radioCustom', view).clientId}"
+                                           rendered="#{not cc.attrs.multiple}" itemIndex="#{status.index}"></p:radioButton>
+                        </f:facet>
+                        <p:graphicImage url="/imagem?codigo=#{entidade.url}" width="100px"></p:graphicImage>
+                    </p:card>
+                </p:repeat>
+            </div>
+            <f:facet name="footer">
+                <p:commandButton value="Confirmar Seleção"
+                                 oncomplete="PF('selecionaImagemDlg').hide();" update="@form" ></p:commandButton>
+            </f:facet>
+        </p:dialog>
+    </cc:implementation>
+</html>
