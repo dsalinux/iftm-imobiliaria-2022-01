@@ -29,7 +29,7 @@ public class BannerBean extends CrudBean<Banner, BannerLogic> {
     @Inject
     private BannerLogic logic;
     @Inject
-    private ImagemBean imagemBean;
+    private ImagemLogic imagemLogic;
 
     @Getter
     @Setter
@@ -52,7 +52,7 @@ public class BannerBean extends CrudBean<Banner, BannerLogic> {
 
     public List<Imagem> getImagens() {
         try {
-            return imagemBean.getLogic().buscar(null);
+            return imagemLogic.buscar(null);
         } catch (ErroNegocioException ex) {
             addAviso(ex);
         } catch (ErroSistemaException ex) {
@@ -66,7 +66,7 @@ public class BannerBean extends CrudBean<Banner, BannerLogic> {
     @Transacao
     public void salvar() {
         try {
-            Imagem imagem = imagemBean.getLogic().uploadToSystem(file);
+            Imagem imagem = imagemLogic.uploadToSystem(file);
             this.getEntidade().setImagem(imagem);
             logic.salvar(this.getEntidade());
             addInfo("Salvo com sucesso.");

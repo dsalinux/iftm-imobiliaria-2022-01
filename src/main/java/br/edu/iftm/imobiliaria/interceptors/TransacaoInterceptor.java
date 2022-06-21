@@ -23,8 +23,8 @@ public class TransacaoInterceptor implements Serializable {
     
     @AroundInvoke
     public Object gerenciarTransacao(InvocationContext context) throws Exception{
-        em.getTransaction().begin();
         try {
+            em.getTransaction().begin();
             Object retorno = context.proceed();
             em.getTransaction().commit();
             return retorno;
