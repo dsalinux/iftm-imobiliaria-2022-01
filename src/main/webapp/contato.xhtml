@@ -1,18 +1,46 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Contato</title>
-    </h:head>
-    <h:body>
-        
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt='http://xmlns.jcp.org/jsf/passthrough'
+                template="template-site.xhtml">
+
+    <div class="container">
+
         <h:form>
-                <p:messages showDetail="true"></p:messages>
+            <p:messages showDetail="true"></p:messages>
+            <h:inputText class=""></h:inputText>
+            <div class="mb-3">
+                <p:outputLabel for="inputNome" class="form-label" value="Email address"></p:outputLabel>
+                <h:inputText pt:type="text" class="form-control" id="inputNome" pt:placeholder="Seu nome"></h:inputText>
+            </div>
+            <div class="mb-3">
+                <p:outputLabel for="inputEmail" class="form-label" value="Email address"></p:outputLabel>
+                <h:inputText pt:type="email" class="form-control" id="inputEmail" pt:placeholder="name@example.com"></h:inputText>
+            </div>
+            <div class="mb-3">
+                <p:outputLabel for="inputTelefone" class="form-label" value="Email address"></p:outputLabel>
+                <h:inputText pt:type="email" class="form-control" id="inputTelefone" pt:placeholder="(xx) 9 9999-9999"></h:inputText>
+            </div>
+            <div class="mb-3">
+                <p:outputLabel for="inputTelefone" class="form-label" value="Email address"></p:outputLabel>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected="selected">Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <p:outputLabel for="inputTelefone" class="form-label" value="Email address"></p:outputLabel>
+                <h:inputTextarea pt:type="email" class="form-control" id="mensagem" pt:placeholder="(xx) 9 9999-9999"></h:inputTextarea>
+            </div>
+            <h:commandButton styleClass="btn btn-success" value="Enviar"></h:commandButton>
             <p:panelGrid columns="2">
-                
+
                 <p:outputLabel for="txtNome" value="Nome"></p:outputLabel>
                 <p:inputText value="#{contatoBean.contato.nome}"
                              id="txtNome"></p:inputText>
@@ -25,19 +53,19 @@
                 <p:outputLabel for="selectTipoSuperior" value="Tipo"></p:outputLabel>
                 <p:selectOneMenu id="selectTipoSuperior" converter="tipoMensagemConverter"
                                  value="#{contatoBean.contato.tipoMensagem}">
-                            <f:attribute name="collectionType" value="java.util.ArrayList" />
-                            <f:selectItem itemLabel="Nenhum"></f:selectItem>
-                            <f:selectItems value="#{contatoBean.tiposMensagens}"
-                                           var="tipo" itemLabel="#{tipo.nome}"
-                                           itemValue="#{tipo}"></f:selectItems>
-                        </p:selectOneMenu>
+                    <f:attribute name="collectionType" value="java.util.ArrayList" />
+                    <f:selectItem itemLabel="Nenhum"></f:selectItem>
+                    <f:selectItems value="#{contatoBean.tiposMensagens}"
+                                   var="tipo" itemLabel="#{tipo.nome}"
+                                   itemValue="#{tipo}"></f:selectItems>
+                </p:selectOneMenu>
                 <p:outputLabel for="txtMensagem" value="Mensagem"></p:outputLabel>
                 <p:inputTextarea id="txtMensagem" value="#{contatoBean.contato.mensagem}"></p:inputTextarea>
                 <p:commandButton actionListener="#{contatoBean.enviarMensagem()}" 
                                  update="@form" value="Enviar"></p:commandButton>
             </p:panelGrid>
         </h:form>
-    </h:body>
+    </div>
 
-</html>
+</ui:composition>
 

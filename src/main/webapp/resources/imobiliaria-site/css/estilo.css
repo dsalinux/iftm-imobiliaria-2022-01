@@ -1,0 +1,31 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+body { display: flex; flex-direction: column }
+
+main {flex: 1}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #084298;
+}
+
+.icon-facebook:hover {
+    color: #0369e3;
+}
+.icon-instagram:hover {
+    color: #F35369;
+}
+.icon-youtube:hover {
+    color: #e64b16;
+}
+
+.banner {
+    width: 100%;
+    height: 40vh;
+    background-size: cover;
+    background-position: center;
+    background-color: lightblue;
+}

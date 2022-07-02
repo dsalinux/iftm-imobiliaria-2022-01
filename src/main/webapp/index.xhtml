@@ -4,14 +4,45 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="template.xhtml">
+                template="template-site.xhtml">
     <h:form>
-        <p:inputText value="#{testeBean.nome}"></p:inputText>
-        <p:commandButton actionListener="#{testeBean.dizerOla()}" 
-                         value="Dizer olá" update="@form"
-                         ></p:commandButton>
-        <p:messages></p:messages>
-        <p:growl life="2000"></p:growl>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <ui:repeat value="#{bannerSiteBean.banners}" varStatus="n" var="banner">
+                    <div class="carousel-item #{n.index==0?'active':''}">
+                        <div class="banner" style="background-image: url('imagem?codigo=#{banner.imagem.url}')"></div>
+                    </div>
+                </ui:repeat>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="container-md">
+            <div class="row">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="..."></img>
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="..."></img>
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                </div>
+            </div>
+        </div>
     </h:form>
 
 </ui:composition>

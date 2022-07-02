@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Sistema Imobiliária #{empty titulo?'':' - '.concat(titulo)}</title>
+        <h:outputStylesheet library="imobiliaria" name="css/all.css"></h:outputStylesheet>
+        <h:outputStylesheet library="imobiliaria-site" name="css/bootstrap.min.css" />
+        <h:outputStylesheet library="imobiliaria-site" name="css/estilo.css"></h:outputStylesheet>
+
+    </h:head>
+    <h:body>
+
+        <header class="container-fluid p-0">
+            <div class="text-center my-3" >
+                <a href="index.xhtml"><h:graphicImage library="imobiliaria-site" name="imagens/logo.png"></h:graphicImage> </a>
+
+            </div>
+
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+                <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.xhtml">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="sobre.xhtml">Sobre</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="orientacoes.xhtml">Orientações</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="orientacoes.xhtml">Imóveis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contato.xhtml">Contato</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <ui:insert></ui:insert>
+        </main>
+        <footer class="border-top my-4 mx-4">
+            <div class="row mt-3">
+                <h5>Links</h5>
+                <div class="col-2">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="admin/" class="nav-link p-0 text-muted">Home</a></li>
+                        <li class="nav-item mb-2"><a href="admin/" class="nav-link p-0 text-muted">Sobre</a></li>
+                        <li class="nav-item mb-2"><a href="admin/" class="nav-link p-0 text-muted">Orientações</a></li>
+                        <li class="nav-item mb-2"><a href="admin/" class="nav-link p-0 text-muted">Imóveis</a></li>
+                        <li class="nav-item mb-2"><a href="admin/" class="nav-link p-0 text-muted">Contato</a></li>
+                        <li class="nav-item mb-2 border-top"><a href="admin/" class="nav-link p-0 text-muted">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top ">
+                <div class="col-md-4 d-flex align-items-center flex-sm-nowrap">
+                    <a href="index.xhtml" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                        <h:graphicImage width="120px" library="imobiliaria-site" name="imagens/logo.png"></h:graphicImage> 
+                    </a>
+                    <span class="text-muted flex-sm-nowrap">© 2022 Alunos IFTM - Paracatu</span>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex fs-2">
+                    <li class="ms-3 "><a class="link-secondary icon-facebook" href="#" ><i class="fab fa-facebook-square"></i></a></li>
+                    <li class="ms-3"><a class="link-secondary icon-instagram" href="#"><i class="fab fa-instagram-square"></i></a></li>
+                    <li class="ms-3"><a class="link-secondary icon-youtube" href="#"><i class="fab fa-youtube-square"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+        <h:outputScript library="imobiliaria-site" name="js/bootstrap.bundle.min.js"></h:outputScript>
+    </h:body>
+</html>
+

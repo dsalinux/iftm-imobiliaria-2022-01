@@ -6,8 +6,13 @@ import br.edu.iftm.imobiliaria.util.Assert;
 import br.edu.iftm.imobiliaria.util.HashUtil;
 import br.edu.iftm.imobiliaria.util.exception.ErroNegocioException;
 import br.edu.iftm.imobiliaria.util.exception.ErroSistemaException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.Security;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import org.hibernate.Hibernate;
 
@@ -32,10 +37,16 @@ public class UsuarioLogic implements CrudLogic<Usuario, Integer>{
             entidade.setDataCadastro(new Date());
         }
         if(Assert.isStringNotEmpty(entidade.getNovaSenha())){
-            entidade.setSenha(HashUtil.sha256Hex(entidade.getNovaSenha()));
-            
+            try {
+                SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+                entidade.setSalt(secureRandom.nextLong());
+                String senhaSalt = entidade.getNovaSenha() + entidade.getSalt();
+                entidade.setSenha(HashUtil.sha256Hex(senhaSalt));
+                
+            } catch (NoSuchAlgorithmException ex) {
+                throw new ErroSistemaException("Erro na criptografia de Senha.", ex);
+            }
         }
-        entidade.setSalt(1233465L);
         
         entidade = repository.salvar(entidade);
         return entidade;

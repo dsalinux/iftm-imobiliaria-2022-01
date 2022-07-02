@@ -3,22 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://xmlns.jcp.org/jsf/composite"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <!-- INTERFACE -->
     <cc:interface>
         <cc:attribute name="multiple" default="false"
                       shortDescription="Permite selecionar várias imagens"></cc:attribute>
-        <cc:attribute name="value" required="true" type="br.edu.iftm.imobiliaria.entity.Imagem"
+        <cc:attribute name="value" required="true" type="#{cc.attrs.multiple?'java.util.Collection':'br.edu.iftm.imobiliaria.entity.Imagem'}"
                       shortDescription="Variável que receberá a(as) imagem(ns) selecionadas"></cc:attribute>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-        <p:button value="Selecionar Imagem" onclick="PF('selecionaImagemDlg').show(); return false;"></p:button>
-        <p:graphicImage id="imgMiniVisualizacao" url="/imagem?codigo=#{cc.attrs.value.url}" width="40px" rendered="#{cc.attrs.value != null}"></p:graphicImage>
+        <h:panelGrid columns="1">
+            <p:button value="Selecionar Imagem" onclick="PF('selecionaImagemDlg').show(); return false;"></p:button>
+            <p:graphicImage id="imgMiniVisualizacao" url="/imagem?codigo=#{cc.attrs.value.url}" width="40px" rendered="#{cc.attrs.value != null}"></p:graphicImage>
+        </h:panelGrid>
         <p:overlayPanel  showEvent="mouseover" hideEvent="mouseout" for="imgMiniVisualizacao" style="width:350px">
-            <p:graphicImage url="/imagem?codigo=#{cc.attrs.value.url}" width="200px" rendered="#{cc.attrs.value != null}"></p:graphicImage>
+            <p:graphicImage url="/imagem?codigo=#{cc.attrs.value.url}" width="200px" rendered="#{cc.attrs.value != null and not cc.attrs.multiple}"></p:graphicImage>
+            <ui:repeat value="#{cc.attrs.value}" var="img" rendered="#{cc.attrs.value != null and cc.attrs.multiple}">
+                <p:graphicImage url="/imagem?codigo=#{img.url}" width="200px"></p:graphicImage>
+            </ui:repeat>
         </p:overlayPanel>
         <p:dialog widgetVar="selecionaImagemDlg" header="Selecione ou envie uma imagem"
                   width="70%" height="50vh">
